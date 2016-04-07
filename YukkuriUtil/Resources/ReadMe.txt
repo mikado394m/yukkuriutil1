@@ -1,4 +1,4 @@
-YukkuriUtil Version0.0.7.7
+YukkuriUtil Version0.0.8.8
 
 
 【使い方】
@@ -12,6 +12,12 @@ http://www.nicovideo.jp/watch/sm28584567
 【連絡先】
 Twitter: @mdsbanana0306
 E-Mail: mdsbanana0306@outlook.jp
+GitHub: https://github.com/mdsbanana0306/yukkriutil
+
+
+【ソースコード】
+GitHubで閲覧できます
+https://github.com/mdsbanana0306/yukkriutil
 
 
 【ライセンス】
@@ -36,6 +42,9 @@ Microsoft Public License (Ms-PL)
 
 
 【変更履歴】
+0.0.8.8(未リリース)
+・ソースコードをGitHubに公開した
+
 0.0.7.7
 ・声変更時にキャッシュが残っていた
 ・リリースを楽にした
