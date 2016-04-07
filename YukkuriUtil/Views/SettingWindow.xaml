@@ -1,0 +1,187 @@
+﻿<Window x:Class="YukkuriUtil.Views.SettingWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+		xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+		xmlns:v="clr-namespace:YukkuriUtil.Views"
+		xmlns:vm="clr-namespace:YukkuriUtil.ViewModels"
+		xmlns:s="clr-namespace:YukkuriUtil.Statics"
+		Title="設定" Height="350" Width="525">
+	
+	<Window.DataContext>
+		<vm:SettingWindowViewModel/>
+	</Window.DataContext>
+
+	<i:Interaction.Triggers>
+
+		<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+		<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+		<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
+		<!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
+		<i:EventTrigger EventName="ContentRendered">
+			<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+		</i:EventTrigger>
+
+		<!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
+		<i:EventTrigger EventName="Closed">
+			<l:DataContextDisposeAction/>
+		</i:EventTrigger>
+
+		<!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
+
+	</i:Interaction.Triggers>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="5*"/>
+			<ColumnDefinition Width="5*"/>
+		</Grid.ColumnDefinitions>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Column="0" Grid.Row="0" Text="声設定"/>
+
+		<ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding VoiceSettings}" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="6*"/>
+							<ColumnDefinition Width="4*"/>
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Column="0" Grid.Row="0" Text="名前"/>
+						<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
+						
+						<TextBlock Grid.Column="0" Grid.Row="1" Text="発声ライブラリ"/>
+						<TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SoftalkLibrary}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="2" Text="声番号"/>
+						<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SoftalkVoiceID}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="3" Text="速度"/>
+						<Slider Grid.Column="1" Grid.Row="3" Minimum="1" Maximum="300" Value="{Binding SoftalkSpeed}" AutoToolTipPlacement="TopLeft"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="4" Text="音量"/>
+						<Slider Grid.Column="1" Grid.Row="4" Minimum="1" Maximum="100" Value="{Binding SoftalkVolume}" AutoToolTipPlacement="TopLeft"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="5" Text="音程"/>
+						<Slider Grid.Column="1" Grid.Row="5" Minimum="1" Maximum="300" Value="{Binding SoftalkPitch}" AutoToolTipPlacement="TopLeft"/>
+
+						<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Text="Exoテンプレート"/>
+						<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Text="{Binding ExoTemplate}" AcceptsReturn="True" TextWrapping="NoWrap"/>
+
+						<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" Content="削除">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<l:LivetCallMethodAction
+										MethodTarget="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+										MethodName="RemoveVoiceSetting"
+										MethodParameter="{Binding}"
+									/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<Button Grid.Column="0" Grid.Row="2" Content="追加">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="AddVoiceSetting"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+
+		<TextBlock Grid.Column="1" Grid.Row="0" Text="プロファイル"/>
+
+		<ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding ProfileSettings}" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="6*"/>
+							<ColumnDefinition Width="4*"/>
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Column="0" Grid.Row="0" Text="プロファイル名"/>
+						<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="1" Text="Softalk.exeへのパス"/>
+						<TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SoftalkPath}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="2" Text="音声ファイルの出力先"/>
+						<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding AudioOutPath}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="3" Text="AviUtlのFPS"/>
+						<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding AviutlFps}"/>
+
+						<TextBlock Grid.Column="0" Grid.Row="4" Text="音声ファイルの調整"/>
+						<TextBox Grid.Column="1" Grid.Row="4" Text="{Binding AudioTimeFix}"/>
+
+						<Button Grid.Column="0" Grid.Row="5" Content="規定にする">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<l:LivetCallMethodAction
+										MethodTarget="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+										MethodName="AcceptProfileSetting"
+										MethodParameter="{Binding}"
+									/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						
+						<Button Grid.Column="1" Grid.Row="5" Content="削除">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<l:LivetCallMethodAction
+										MethodTarget="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+										MethodName="RemoveProfileSetting"
+										MethodParameter="{Binding}"
+									/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<Button Grid.Column="1" Grid.Row="2" Content="追加">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="AddProfileSetting"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+	</Grid>
+</Window>

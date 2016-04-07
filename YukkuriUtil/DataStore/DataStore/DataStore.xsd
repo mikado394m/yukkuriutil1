@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+      *********    このファイルを編集しないでください     *********
+      このファイルはデザイン ツールにより作成されました。
+      このファイルに変更を加えるとエラーが発生する場合があります。
+-->
+<xs:schema xmlns:blend="http://schemas.microsoft.com/expression/blend/2008" xmlns:tns="Expression.Blend.DataStore.DataStore" targetNamespace="Expression.Blend.DataStore.DataStore" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DataStore" type="tns:DataStore" />
+  <xs:complexType name="DataStore" />
+</xs:schema>
