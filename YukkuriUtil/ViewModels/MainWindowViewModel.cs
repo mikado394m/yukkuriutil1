@@ -289,7 +289,7 @@ namespace YukkuriUtil.ViewModels {
 		}
 
 		// フォームが閉じた
-		public void Dispose() {
+		public new void Dispose() {
 			setting.Serialize();
 			voiceCreator?.Dispose();
 		}

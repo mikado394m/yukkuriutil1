@@ -179,7 +179,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの発声ライブラリ
 		public int SoftalkLibrary {
 			set {
-				if (value != SoftalkLibraryRange) {
+				if (!Helpers.IsRange(value, SoftalkLibraryFirst, SoftalkLibraryLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkLibrary = value;
@@ -194,7 +194,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの声番号
 		public int SoftalkVoiceID {
 			set {
-				if (value != SoftalkVoiceIDRange) {
+				if (!Helpers.IsRange(value, SoftalkVoiceIDFirst)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkVoiceID = value;
@@ -209,7 +209,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの再生速度
 		public int SoftalkSpeed {
 			set {
-				if (value != SoftalkSpeedRange) {
+				if (!Helpers.IsRange(value, SoftalkSpeedFirst, SoftalkSpeedLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkSpeed = value;
@@ -224,7 +224,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの音量
 		public int SoftalkVolume {
 			set {
-				if (value != SoftalkVolumeRange) {
+				if (!Helpers.IsRange(value, SoftalkVolumeFirst, SoftalkVolumeLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkVolume = value;
@@ -239,7 +239,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの音程
 		public int SoftalkPitch {
 			set {
-				if (value != SoftalkPitchRange) {
+				if (!Helpers.IsRange(value, SoftalkPitchFirst, SoftalkPitchLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkPitch = value;

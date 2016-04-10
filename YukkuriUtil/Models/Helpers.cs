@@ -5,28 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YukkuriUtil.Models {
-	public struct Range {
-		public int FirstValue {
-			get;
-			set;
-		}
-
-		public int LastValue {
-			get;
-			set;
-		}
-
-		public Range(int firstValue = int.MinValue, int lastValue = int.MaxValue) {
-			FirstValue = firstValue;
-			LastValue = lastValue;
-		}
-
-		public static bool operator ==(int value, Range range) {
-			return (value >= range.FirstValue && value <= range.LastValue);
-		}
-
-		public static bool operator !=(int value, Range range) {
-			return !(value == range);
+	public static class Helpers {
+		public static bool IsRange(int value, int first = int.MinValue, int last = int.MaxValue) {
+			return (value >= first && value <= last);
 		}
 	}
 }
