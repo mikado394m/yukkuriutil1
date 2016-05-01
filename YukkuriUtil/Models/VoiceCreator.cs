@@ -8,6 +8,7 @@ using Livet;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using NAudio;
 using NAudio.Wave;
 
@@ -81,8 +82,8 @@ namespace YukkuriUtil.Models {
 
 		private void createExo(string filePath, string template, string showText, string wavOutPath, int voiceTime) {
 			// 表示テキストをExoで利用できるようにする
-			var exoShowText = BitConverter
-				.ToString(Encoding.Unicode.GetBytes(showText))
+			var exoShowText =
+				BitConverter.ToString(Encoding.Unicode.GetBytes(showText))
 				.Replace("-", "")
 				.ToLower()
 				.PadRight(4096, '0');

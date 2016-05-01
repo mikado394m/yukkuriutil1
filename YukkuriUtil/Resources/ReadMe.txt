@@ -1,4 +1,4 @@
-YukkuriUtil Version0.0.8.8
+YukkuriUtil Version0.0.9.9
 
 
 【使い方】
@@ -42,7 +42,10 @@ Microsoft Public License (Ms-PL)
 
 
 【変更履歴】
-0.0.8.8(未リリース)
+0.0.9.9(未リリース)
+・非同期処理を書き換えた
+
+0.0.8.8
 ・ソースコードをGitHubに公開した
 
 0.0.7.7

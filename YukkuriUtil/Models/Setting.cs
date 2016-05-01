@@ -93,7 +93,7 @@ namespace YukkuriUtil.Models {
 		}
 	}
 
-	public class ProfileSetting {
+	public class ProfileSetting : ICloneable {
 		public ProfileSetting() {
 		}
 
@@ -108,7 +108,11 @@ namespace YukkuriUtil.Models {
 		}
 
 		public ProfileSetting Clone() {
-			return (ProfileSetting)MemberwiseClone();
+			return (ProfileSetting)(((ICloneable)this).Clone());
+		}
+
+		object ICloneable.Clone() {
+			return MemberwiseClone();
 		}
 
 		public string Name {

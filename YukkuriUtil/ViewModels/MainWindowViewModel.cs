@@ -259,33 +259,37 @@ namespace YukkuriUtil.ViewModels {
 			IsTextCopy = true;
 		}
 
-		public void DragStart(DependencyObject e) {
+		public async void DragStart(DependencyObject e) {
 			// 生成中メッセージ
 			AreaText = "音声を生成中…\nマウスを放さないでください。";
 			AreaColor = Brushes.LightYellow;
 
-			new Task(() => {
-				var outPath = voiceCreator.Create(
+			var outPath = await Task.Run(() => {
+				return voiceCreator.Create(
 					VoiceText,
 					setting.Setting.Voices[SelectionVoice],
 					ShowText
 				);
-				DispatcherHelper.UIDispatcher.Invoke(() => {
-					// 生成完了メッセージ
-					AreaText = "準備完了!\nAviUtlのウィンドウ上で\nマウスを放してください。";
-					AreaColor = Brushes.LightGreen;
+			});
 
-					// ドラッグ&ドロップ本体
+			// 生成完了メッセージ
+			AreaText = "準備完了!\nAviUtlのウィンドウ上で\nマウスを放してください。";
+			AreaColor = Brushes.LightGreen;
+
+			// ドラッグ&ドロップ本体
+			await Task.Run(async () => {
+				await DispatcherHelper.UIDispatcher.BeginInvoke(new Action(() => {
 					DragDrop.DoDragDrop(
 						e,
 						new DataObject(DataFormats.FileDrop, new string[] { outPath }),
-						DragDropEffects.Copy);
+						DragDropEffects.Copy
+					);
+				}));
+			});
 
-					// 元に戻す
-					AreaText = "この領域をAviUtlのウィンドウに\nD&Dしてください。";
-					AreaColor = Brushes.LightGray;
-				});
-			}).Start();
+			// 元に戻す
+			AreaText = "この領域をAviUtlのウィンドウに\nD&Dしてください。";
+			AreaColor = Brushes.LightGray;
 		}
 
 		// フォームが閉じた
