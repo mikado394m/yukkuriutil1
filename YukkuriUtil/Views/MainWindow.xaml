@@ -82,12 +82,12 @@
 				</Grid.ColumnDefinitions>
 				
 				<TextBlock Grid.Column="0" Text="発声記号"/>
-				<CheckBox Grid.Column="1" Content="字幕をコピー" HorizontalAlignment="Right" IsTabStop="False" IsChecked="{Binding IsTextCopy}"/>
+				<CheckBox Grid.Column="1" Content="字幕をコピー" HorizontalAlignment="Right" IsTabStop="False" IsChecked="{Binding ShouldTextCopy}"/>
 			</Grid>
 			<TextBox Grid.Row="3" Text="{Binding VoiceText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="GotFocus">
-						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="DisabledTextCopy"/>
+						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="DisableCopyText"/>
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</TextBox>

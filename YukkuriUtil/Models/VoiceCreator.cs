@@ -33,7 +33,7 @@ namespace YukkuriUtil.Models {
 			Process.Start(profile.SoftalkPath, "/X:1");
 		}
 
-		public void CacheClear() {
+		public void ClearCache() {
 			oldVoiceText = null;
 		}
 
@@ -64,11 +64,9 @@ namespace YukkuriUtil.Models {
 
 				try {
 					wavFs = new FileStream(filePath, FileMode.Open);
+                    break;
 				} catch {
-					continue;
 				}
-
-				break;
 			}
 
 			// 音声の長さを調べる

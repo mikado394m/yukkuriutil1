@@ -77,7 +77,7 @@ namespace YukkuriUtil.ViewModels
                 try
                 {
                     voiceCreator = new VoiceCreator(SelectionProfile);
-                    break;
+                    return;
                 }
                 catch
                 {
@@ -116,7 +116,6 @@ namespace YukkuriUtil.ViewModels
                     return;
                 _VoiceText = value;
                 RaisePropertyChanged();
-                RaisePropertyChanged("SelectionVoice");
             }
         }
         #endregion
@@ -135,7 +134,7 @@ namespace YukkuriUtil.ViewModels
                 if (_ShowText == value)
                     return;
                 _ShowText = value;
-                if (IsTextCopy)
+                if (ShouldTextCopy)
                 {
                     VoiceText = value;
                 }
@@ -144,20 +143,20 @@ namespace YukkuriUtil.ViewModels
         }
         #endregion
 
-        #region IsTextCopy変更通知プロパティ
-        private bool _IsTextCopy = true;
+        #region ShouldTextCopy変更通知プロパティ
+        private bool _ShouldTextCopy = true;
 
-        public bool IsTextCopy
+        public bool ShouldTextCopy
         {
             get
             {
-                return _IsTextCopy;
+                return _ShouldTextCopy;
             }
             set
             {
-                if (_IsTextCopy == value)
+                if (_ShouldTextCopy == value)
                     return;
-                _IsTextCopy = value;
+                _ShouldTextCopy = value;
                 if (value == true)
                 {
                     VoiceText = ShowText;
@@ -220,7 +219,7 @@ namespace YukkuriUtil.ViewModels
                     return;
                 _SelectionVoice = value;
                 setting.Setting.SelectionVoice = value;
-                voiceCreator?.CacheClear();
+                voiceCreator?.ClearCache();
                 RaisePropertyChanged();
             }
         }
@@ -267,11 +266,13 @@ namespace YukkuriUtil.ViewModels
         // 設定ウィンドウを開く
         public void OpenSettingWindow()
         {
-            voiceCreator?.CacheClear();
+            voiceCreator?.ClearCache();
 
             // 引数
-            var config = new SettingWindowViewModel();
-            config.Setting = setting.Setting;
+            var config = new SettingWindowViewModel()
+            {
+                Setting = setting.Setting
+            };
 
             // 実際に呼び出す
             var message = new TransitionMessage(typeof(Views.SettingWindow), config, TransitionMode.Modal, "OpenSettingWindow");
@@ -289,14 +290,14 @@ namespace YukkuriUtil.ViewModels
             SelectionVoice = setting.Setting.SelectionVoice;
         }
 
-        public void DisabledTextCopy()
+        public void DisableCopyText()
         {
-            IsTextCopy = false;
+            ShouldTextCopy = false;
         }
 
-        public void EnabledTextCopy()
+        public void EnableCopyText()
         {
-            IsTextCopy = true;
+            ShouldTextCopy = true;
         }
 
         public async void DragStart(DependencyObject e)
@@ -324,6 +325,7 @@ namespace YukkuriUtil.ViewModels
                     DragDropEffects.Copy
                 );
             }));
+            
 
             // 元に戻す
             AreaText = "この領域をAviUtlのウィンドウに\nD&Dしてください。";
