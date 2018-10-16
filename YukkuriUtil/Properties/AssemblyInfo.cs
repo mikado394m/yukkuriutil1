@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("YukkuriUtil")]
-[assembly: AssemblyCopyright("Copyright (c) 2016 mdsbanana0306")]
+[assembly: AssemblyCopyright("Copyright (c) 2016 mikado394m")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,7 +51,7 @@ using System.Windows;
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を 
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.7.7")]
-[assembly: AssemblyFileVersion("0.0.7.7")]
+[assembly: AssemblyVersion("0.0.9.9")]
+[assembly: AssemblyFileVersion("0.0.9.9")]
 [assembly: NeutralResourcesLanguage("ja")]
 
