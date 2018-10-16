@@ -70,7 +70,7 @@
 							</ei:ConditionBehavior>
 						</i:Interaction.Behaviors>
 
-						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="EnabledTextCopy"/>
+						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="EnableCopyText"/>
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</TextBox>
