@@ -40,23 +40,48 @@ namespace YukkuriUtil.Models {
 		// 生成されたwavの長さ(ミリ秒)を返す
 		private async Task<int> createWavAsync(string filePath, VoiceSetting setting, string voiceText) {
 			// SofTalk.exe に音声を生成させる
-			Process.Start(
-				profile.SoftalkPath,
-				string.Format(
-					"/T:{0} /U:{1} /V:{2} /O:{3} /S:{4} /R:\"{5}\" /W:{6}",
-					new object[] {
-						setting.SoftalkLibrary,
-						setting.SoftalkVoiceID,
-						setting.SoftalkVolume,
-						setting.SoftalkPitch,
-						setting.SoftalkSpeed,
-						filePath,
-						voiceText
-					}
-				)
-			);
+            // AquesTalk10 かそうでないかで分岐
+            if (setting.SoftalkLibrary != 11)
+            {
+                Process.Start(
+                    profile.SoftalkPath,
+                    string.Format(
+                        "/T:{0} /U:{1} /V:{2} /O:{3} /S:{4} /R:\"{5}\" /W:{6}",
+                        new object[] {
+                            setting.SoftalkLibrary,
+                            setting.SoftalkVoiceID,
+                            setting.SoftalkVolume,
+                            setting.SoftalkPitch,
+                            setting.SoftalkSpeed,
+                            filePath,
+                            voiceText
+                        }
+                    )
+                );
+            }
+            else
+            {
+                Process.Start(
+                    profile.SoftalkPath,
+                    string.Format(
+                        "/T:{0} /U:{1} /V:{2} /O:{3} /S:{4} /J:{5} /K:{6} /L:{7} /R:\"{8}\" /W:{9}",
+                        new object[] {
+                            setting.SoftalkLibrary,
+                            setting.SoftalkVoiceID,
+                            setting.SoftalkVolume,
+                            setting.SoftalkPitch,
+                            setting.SoftalkSpeed,
+                            setting.A10Pitch,
+                            setting.A10Accent,
+                            setting.A10Pitch2,
+                            filePath,
+                            voiceText
+                        }
+                    )
+                );
+            }
 
-			FileStream wavFs;
+            FileStream wavFs;
 
 			// 音声が完成するまで待つ
 			while (true) {
@@ -85,10 +110,13 @@ namespace YukkuriUtil.Models {
 				.Replace("-", "")
 				.ToLower()
 				.PadRight(4096, '0');
-
+            
 			var exoVoiceTime = (int)((voiceTime + profile.AudioTimeFix) * (profile.AviutlFps / 1000f));
-			Debug.Write(exoVoiceTime);
-			Debug.Write(voiceTime);
+            // 一応0以下にはしない
+            if (exoVoiceTime < 1)
+            {
+                exoVoiceTime = 1;
+            }
 
 			var exoStr = string.Format(template, exoShowText, wavOutPath, exoVoiceTime);
 

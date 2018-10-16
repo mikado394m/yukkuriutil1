@@ -52,8 +52,8 @@
 				<DataTemplate>
 					<Grid>
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="6*"/>
 							<ColumnDefinition Width="4*"/>
+							<ColumnDefinition Width="6*"/>
 						</Grid.ColumnDefinitions>
 
 						<Grid.RowDefinitions>
@@ -66,7 +66,10 @@
 							<RowDefinition/>
 							<RowDefinition/>
 							<RowDefinition/>
-						</Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
 						<TextBlock Grid.Column="0" Grid.Row="0" Text="名前"/>
 						<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
@@ -86,10 +89,19 @@
 						<TextBlock Grid.Column="0" Grid.Row="5" Text="音程"/>
 						<Slider Grid.Column="1" Grid.Row="5" Minimum="1" Maximum="300" Value="{Binding SoftalkPitch}" AutoToolTipPlacement="TopLeft"/>
 
-						<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Text="Exoテンプレート"/>
-						<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Text="{Binding ExoTemplate}" AcceptsReturn="True" TextWrapping="NoWrap"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="高さ (A10)"/>
+                        <Slider Grid.Column="1" Grid.Row="6" Minimum="20" Maximum="200" Value="{Binding A10Pitch}" AutoToolTipPlacement="TopLeft"/>
 
-						<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" Content="削除">
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="音程2 (A10)"/>
+                        <Slider Grid.Column="1" Grid.Row="7" Minimum="50" Maximum="200" Value="{Binding A10Pitch2}" AutoToolTipPlacement="TopLeft"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="8" Text="アクセント (A10)"/>
+                        <Slider Grid.Column="1" Grid.Row="8" Minimum="0" Maximum="200" Value="{Binding A10Accent}" AutoToolTipPlacement="TopLeft"/>
+
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Text="Exoテンプレート"/>
+						<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10" Text="{Binding ExoTemplate}" AcceptsReturn="True" TextWrapping="NoWrap"/>
+
+						<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11" Content="削除">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="Click">
 									<l:LivetCallMethodAction

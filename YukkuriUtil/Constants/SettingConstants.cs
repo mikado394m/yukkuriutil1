@@ -31,4 +31,16 @@ namespace YukkuriUtil.Constants {
 		public const int SoftalkPitchFirst = 1;
 		public const int SoftalkPitchLast = 300;
 	}
+
+    public static class SofTalk
+    {
+        public const int A10PitchMin = 20;
+        public const int A10PitchMax = 200;
+
+        public const int A10Pitch2Min = 50;
+        public const int A10Pitch2Max = 200;
+
+        public const int A10AccentMin = 0;
+        public const int A10AccentMax = 200;
+    }
 }

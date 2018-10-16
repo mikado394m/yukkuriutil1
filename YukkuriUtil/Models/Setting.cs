@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 using System.IO;
+using YukkuriUtil.Constants;
 using static YukkuriUtil.Constants.SettingConstants;
 
 namespace YukkuriUtil.Models {
@@ -96,16 +97,6 @@ namespace YukkuriUtil.Models {
 		public ProfileSetting() {
 		}
 
-		public ProfileSetting(
-			string name,
-			string softalkPath,
-			string audioOutPath
-		) {
-			Name = name;
-			SoftalkPath = softalkPath;
-			AudioOutPath = audioOutPath;
-		}
-
 		public ProfileSetting Clone() {
 			return (ProfileSetting)(((ICloneable)this).Clone());
 		}
@@ -148,24 +139,6 @@ namespace YukkuriUtil.Models {
 
 	public class VoiceSetting {
 		public VoiceSetting() {
-		}
-
-		public VoiceSetting(
-			string name,
-			int softalkLibrary,
-			int softalkVoiceID,
-			int softalkSpeed,
-			int softalkVolume,
-			int softalkPitch,
-			string exoTemplate
-		) {
-			Name = name;
-			SoftalkLibrary = softalkLibrary;
-			SoftalkVoiceID = softalkVoiceID;
-			SoftalkSpeed = softalkSpeed;
-			SoftalkVolume = softalkVolume;
-			SoftalkPitch = softalkPitch;
-			ExoTemplate = exoTemplate;
 		}
 
 		public VoiceSetting Clone() {
@@ -252,7 +225,55 @@ namespace YukkuriUtil.Models {
 			}
 		}
 
-		public string ExoTemplate {
+        private int _A10Pitch = 100;
+
+        public int A10Pitch
+        {
+            set
+            {
+                if (!Helpers.InRange(value, SofTalk.A10PitchMin, SofTalk.A10PitchMax))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _A10Pitch = value;
+
+            }
+            get => _A10Pitch;
+        }
+
+        private int _A10Pitch2 = 100;
+
+        public int A10Pitch2
+        {
+            set
+            {
+                if (!Helpers.InRange(value, SofTalk.A10Pitch2Min, SofTalk.A10Pitch2Max))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _A10Pitch2 = value;
+
+            }
+            get => _A10Pitch2;
+        }
+
+        private int _A10Accent = 100;
+
+        public int A10Accent
+        {
+            set
+            {
+                if (!Helpers.InRange(value, SofTalk.A10AccentMin, SofTalk.A10AccentMax))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _A10Accent = value;
+
+            }
+            get => _A10Accent;
+        }
+
+        public string ExoTemplate {
 			get;
 			set;
 		} =
