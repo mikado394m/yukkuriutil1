@@ -9,14 +9,15 @@ using YukkuriUtil.Models;
 namespace YukkuriUtil.Constants {
 	public static class SettingConstants {
 		public const int SoftalkLibraryFirst = 7;
-		public const int SoftalkLibraryLast = 10;
+		public const int SoftalkLibraryLast = 11;
 
 		public static readonly List<Tuple<int, string>> SoftalkLibraryList
 			= new List<Tuple<int, string>> {
 				new Tuple<int, string>(7, "AquesTalk"),
 				new Tuple<int, string>(8, "SAPI"),
 				new Tuple<int, string>(9, "Speech Platform"),
-				new Tuple<int, string>(10, "AquesTalk2")
+				new Tuple<int, string>(10, "AquesTalk2"),
+                new Tuple<int, string>(11, "AquesTalk10")
 			};
 
 		public const int SoftalkVoiceIDFirst = 0;
