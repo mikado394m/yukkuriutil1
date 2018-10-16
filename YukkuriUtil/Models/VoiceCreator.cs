@@ -38,7 +38,7 @@ namespace YukkuriUtil.Models {
 		}
 
 		// 生成されたwavの長さ(ミリ秒)を返す
-		private int createWav(string filePath, VoiceSetting setting, string voiceText) {
+		private async Task<int> createWavAsync(string filePath, VoiceSetting setting, string voiceText) {
 			// SofTalk.exe に音声を生成させる
 			Process.Start(
 				profile.SoftalkPath,
@@ -60,7 +60,7 @@ namespace YukkuriUtil.Models {
 
 			// 音声が完成するまで待つ
 			while (true) {
-				Thread.Sleep(50);
+				await Task.Delay(50);
 
 				try {
 					wavFs = new FileStream(filePath, FileMode.Open);
@@ -99,7 +99,7 @@ namespace YukkuriUtil.Models {
 			}
 		}
 
-		public string Create(string voiceText, VoiceSetting setting, string showText) {
+		public async Task<string> CreateAsync(string voiceText, VoiceSetting setting, string showText) {
 			string time = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss fffffff");
 			string wavOutPath = Path.GetFullPath(Path.Combine(profile.AudioOutPath, time + ".wav"));
 			string exoOutPath = Path.GetFullPath(Path.Combine(profile.AudioOutPath, time + ".exo"));
@@ -117,7 +117,7 @@ namespace YukkuriUtil.Models {
 				return exoOutPath;
 			}
 
-			var voiceTime = createWav(wavOutPath, setting, voiceText);
+			var voiceTime = await createWavAsync(wavOutPath, setting, voiceText);
 			createExo(exoOutPath, setting.ExoTemplate, showText, wavOutPath, voiceTime);
 
 			oldShowText = showText;
