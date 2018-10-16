@@ -1,32 +1,26 @@
-YukkuriUtil Version0.0.9.9
+﻿YukkuriUtil Version0.0.9.9
 
 
 【使い方】
-TODO
+紹介動画を見てください。
 
 
 【紹介動画】
 http://www.nicovideo.jp/watch/sm28584567
 
 
-【連絡先】
-Twitter: @mdsbanana0306
-E-Mail: mdsbanana0306@outlook.jp
-GitHub: https://github.com/mdsbanana0306/yukkriutil
-
-
 【ソースコード】
-GitHubで閲覧できます
-https://github.com/mdsbanana0306/yukkriutil
+https://github.com/mdsbanana0306/yukkriutil1
+
+
+【連絡先】
+バグ報告等は紹介動画のコメントか、GitHub の Issues にお願いします。
+https://github.com/mdsbanana0306/yukkuriutil1/issues
 
 
 【ライセンス】
-zlib/libpng License
-https://opensource.org/licenses/Zlib
+LICENSE.txt を見てください。
 但し、別途ライセンスが記載されている物は、そのライセンスが適用されます。
-
-ライセンスに従い、著作権表示が必要な場合は、以下の表記を利用してください。
-Copyright (c) 2016 mdsbanana0306
 
 
 【使用させて頂いた物】
@@ -42,12 +36,13 @@ Microsoft Public License (Ms-PL)
 
 
 【変更履歴】
-0.0.9.9(未リリース)
+0.0.9.9
 ・非同期処理を書き換えた
 ・アイコンを新しくした
+・AquesTalk10 に対応した
 
 0.0.8.8
-・ソースコードをGitHubに公開した
+・ソースコードを GitHub に公開した
 
 0.0.7.7
 ・声変更時にキャッシュが残っていた
@@ -61,7 +56,7 @@ Microsoft Public License (Ms-PL)
 ・設定周りのバグ修正
 
 0.0.4.4
-・ReadMeを追記
+・ReadMe を追記
 ・バージョンを付けた
 ・ファイルにメタ情報を追加
 
@@ -77,4 +72,4 @@ Microsoft Public License (Ms-PL)
 ・テキストボックスが内容に合わせて伸びなくなった
 
 0.0.0.0
-初回リリース
+・初回リリース
