@@ -10,12 +10,12 @@ http://www.nicovideo.jp/watch/sm28584567
 
 
 【ソースコード】
-https://github.com/mdsbanana0306/yukkriutil1
+https://github.com/mikado394m/yukkuriutil1
 
 
 【連絡先】
 バグ報告等は紹介動画のコメントか、GitHub の Issues にお願いします。
-https://github.com/mdsbanana0306/yukkuriutil1/issues
+https://github.com/mikado394m/yukkuriutil1/issues
 
 
 【ライセンス】
