@@ -66,6 +66,25 @@ namespace YukkuriUtil.ViewModels
         SettingLoader setting = new SettingLoader("setting.xml");
         VoiceCreator voiceCreator;
 
+        private bool OpenSettingWindowOrQuit(string message)
+        {
+            var res = MessageBox.Show(
+                message,
+                "エラー",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Error
+            );
+
+            if (res == MessageBoxResult.Yes)
+            {
+                OpenSettingWindow();
+                return false;
+            }
+
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "CloseWindow"));
+            return true;
+        }
+
         public void Initialize()
         {
             setting.Deserialize();
@@ -77,24 +96,28 @@ namespace YukkuriUtil.ViewModels
                 try
                 {
                     voiceCreator = new VoiceCreator(SelectionProfile);
-                    return;
+                    break;
                 }
                 catch
                 {
-                    var res = MessageBox.Show(
-                        "SofTalk.exe のパスが設定されていません!\n設定ウィンドウを開きますか?",
-                        "エラー",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Error
-                    );
-
-                    if (res == MessageBoxResult.Yes)
+                    if (OpenSettingWindowOrQuit("SofTalk.exe のパスが正しく設定されていません!\n設定ウィンドウを開きますか?"))
                     {
-                        OpenSettingWindow();
+                        return;
                     }
-                    else
+                }
+
+            }
+
+            while (true)
+            {
+                if (System.IO.Directory.Exists(SelectionProfile.AudioOutPath))
+                {
+                    break;
+                }
+                else
+                {
+                    if (OpenSettingWindowOrQuit("音声の出力先が正しく設定されていません!\n設定ウィンドウを開きますか?"))
                     {
-                        Messenger.Raise(new WindowActionMessage(WindowAction.Close, "CloseWindow"));
                         return;
                     }
                 }
