@@ -103,7 +103,7 @@ namespace YukkuriUtil.Models {
 			return voiceTime;
 		}
 
-		private void createExo(string filePath, string template, string showText, string wavOutPath, int voiceTime) {
+		private void createExo(string filePath, string template, string showText, string wavOutPath, int voiceTime, VoiceSetting voiceSetting) {
 			// 表示テキストをExoで利用できるようにする
 			var exoShowText =
 				BitConverter.ToString(Encoding.Unicode.GetBytes(showText))
@@ -111,7 +111,7 @@ namespace YukkuriUtil.Models {
 				.ToLower()
 				.PadRight(4096, '0');
             
-			var exoVoiceTime = (int)((voiceTime + profile.AudioTimeFix) * (profile.AviutlFps / 1000f));
+			var exoVoiceTime = (int)((voiceTime + voiceSetting.AudioOffset) * (profile.AviutlFps / 1000f));
             // 一応0以下にはしない
             if (exoVoiceTime < 1)
             {
@@ -139,12 +139,12 @@ namespace YukkuriUtil.Models {
 				oldShowText = showText;
 				oldExoOutPath = exoOutPath;
 
-				createExo(exoOutPath, setting.ExoTemplate, showText, oldWavOutPath, oldVoiceTime);
+				createExo(exoOutPath, setting.ExoTemplate, showText, oldWavOutPath, oldVoiceTime, setting);
 				return exoOutPath;
 			}
 
 			var voiceTime = await createWavAsync(wavOutPath, setting, voiceText);
-			createExo(exoOutPath, setting.ExoTemplate, showText, wavOutPath, voiceTime);
+			createExo(exoOutPath, setting.ExoTemplate, showText, wavOutPath, voiceTime, setting);
 
 			oldShowText = showText;
 			oldWavOutPath = wavOutPath;

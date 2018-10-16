@@ -129,12 +129,6 @@ namespace YukkuriUtil.Models {
 			get;
 			set;
 		} = 30;
-
-		// 音声ファイルの長さ補正値(ミリ秒)
-		public int AudioTimeFix {
-			get;
-			set;
-		} = -300;
 	}
 
 	public class VoiceSetting {
@@ -272,6 +266,8 @@ namespace YukkuriUtil.Models {
             }
             get => _A10Accent;
         }
+
+        public int AudioOffset { get; set; } = -300;
 
         public string ExoTemplate {
 			get;

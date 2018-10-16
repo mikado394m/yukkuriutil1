@@ -7,7 +7,7 @@
 		xmlns:v="clr-namespace:YukkuriUtil.Views"
 		xmlns:vm="clr-namespace:YukkuriUtil.ViewModels"
 		xmlns:c="clr-namespace:YukkuriUtil.Constants"
-		Title="設定" Height="350" Width="525">
+		Title="設定" Height="350" Width="600">
 	
 	<Window.DataContext>
 		<vm:SettingWindowViewModel/>
@@ -69,6 +69,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
 						<TextBlock Grid.Column="0" Grid.Row="0" Text="名前"/>
@@ -98,10 +99,13 @@
                         <TextBlock Grid.Column="0" Grid.Row="8" Text="アクセント (A10)"/>
                         <Slider Grid.Column="1" Grid.Row="8" Minimum="0" Maximum="200" Value="{Binding A10Accent}" AutoToolTipPlacement="TopLeft"/>
 
-                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Text="Exoテンプレート"/>
-						<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10" Text="{Binding ExoTemplate}" AcceptsReturn="True" TextWrapping="NoWrap"/>
+                        <TextBlock Grid.Column="0" Grid.Row="9" Text="音声の長さ補正"/>
+                        <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding AudioOffset}"/>
 
-						<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11" Content="削除">
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10" Text="Exoテンプレート"/>
+						<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11" Text="{Binding ExoTemplate}" AcceptsReturn="True" TextWrapping="NoWrap"/>
+
+						<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12" Content="削除">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="Click">
 									<l:LivetCallMethodAction
@@ -132,8 +136,8 @@
 				<DataTemplate>
 					<Grid>
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="6*"/>
 							<ColumnDefinition Width="4*"/>
+							<ColumnDefinition Width="6*"/>
 						</Grid.ColumnDefinitions>
 
 						<Grid.RowDefinitions>
@@ -141,9 +145,8 @@
 							<RowDefinition/>
 							<RowDefinition/>
 							<RowDefinition/>
-							<RowDefinition/>
-							<RowDefinition/>
-						</Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
 						<TextBlock Grid.Column="0" Grid.Row="0" Text="プロファイル名"/>
 						<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
@@ -155,12 +158,9 @@
 						<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding AudioOutPath}"/>
 
 						<TextBlock Grid.Column="0" Grid.Row="3" Text="AviUtlのFPS"/>
-						<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding AviutlFps}"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding AviutlFps}"/>
 
-						<TextBlock Grid.Column="0" Grid.Row="4" Text="音声ファイルの調整"/>
-						<TextBox Grid.Column="1" Grid.Row="4" Text="{Binding AudioTimeFix}"/>
-
-						<Button Grid.Column="0" Grid.Row="5" Content="規定にする">
+                        <Button Grid.Column="0" Grid.Row="4" Content="規定にする">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="Click">
 									<l:LivetCallMethodAction
@@ -172,7 +172,7 @@
 							</i:Interaction.Triggers>
 						</Button>
 						
-						<Button Grid.Column="1" Grid.Row="5" Content="削除">
+						<Button Grid.Column="1" Grid.Row="4" Content="削除">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="Click">
 									<l:LivetCallMethodAction
