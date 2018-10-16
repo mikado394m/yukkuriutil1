@@ -277,15 +277,13 @@ namespace YukkuriUtil.ViewModels {
 			AreaColor = Brushes.LightGreen;
 
 			// ドラッグ&ドロップ本体
-			await Task.Run(async () => {
-				await DispatcherHelper.UIDispatcher.BeginInvoke(new Action(() => {
-					DragDrop.DoDragDrop(
-						e,
-						new DataObject(DataFormats.FileDrop, new string[] { outPath }),
-						DragDropEffects.Copy
-					);
-				}));
-			});
+			await DispatcherHelper.UIDispatcher.BeginInvoke(new Action(() => {
+				DragDrop.DoDragDrop(
+					e,
+					new DataObject(DataFormats.FileDrop, new string[] { outPath }),
+					DragDropEffects.Copy
+				);
+			}));
 
 			// 元に戻す
 			AreaText = "この領域をAviUtlのウィンドウに\nD&Dしてください。";

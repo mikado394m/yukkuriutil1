@@ -116,7 +116,7 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
-			<TextBlock Grid.Column="1" Text="{Binding SelectionProfile.Name, StringFormat={}プロファイル: {0}}"/>
+			<TextBlock Grid.Column="1" Text="{Binding SelectionProfile.Name, StringFormat=プロファイル: {0}}"/>
 		</Grid>
 		<Button Grid.Column="1" Grid.Row="1" Content="設定" IsTabStop="False">
 			<i:Interaction.Triggers>

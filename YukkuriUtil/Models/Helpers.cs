@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace YukkuriUtil.Models {
 	public static class Helpers {
-		public static bool IsRange(int value, int first = int.MinValue, int last = int.MaxValue) {
-			return (value >= first && value <= last);
+		public static bool InRange(int value, int first = int.MinValue, int last = int.MaxValue) {
+			return (first <= value && value <= last);
 		}
 	}
 }

@@ -93,7 +93,7 @@
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\VoiceCreator.cs" />
-    <Compile Include="Statics\SettingStatic.cs" />
+    <Compile Include="Constants\SettingConstants.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

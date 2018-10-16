@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 using System.IO;
-using static YukkuriUtil.Statics.SettingStatic;
+using static YukkuriUtil.Constants.SettingConstants;
 
 namespace YukkuriUtil.Models {
 	public class SettingLoader {
-		private string filePath;
-		public string FilePath {
-			get {
-				return filePath;
-			}
-		}
+        public string FilePath
+        {
+            private set;
+            get;
+        }
 
 		public AppSetting Setting {
 			set;
@@ -28,7 +27,7 @@ namespace YukkuriUtil.Models {
 		};
 
 		public SettingLoader(string filePath) {
-			this.filePath = filePath;
+			FilePath = filePath;
 		}
 
 		// 設定ファイルを読み込む
@@ -183,7 +182,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの発声ライブラリ
 		public int SoftalkLibrary {
 			set {
-				if (!Helpers.IsRange(value, SoftalkLibraryFirst, SoftalkLibraryLast)) {
+				if (!Helpers.InRange(value, SoftalkLibraryFirst, SoftalkLibraryLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkLibrary = value;
@@ -198,7 +197,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの声番号
 		public int SoftalkVoiceID {
 			set {
-				if (!Helpers.IsRange(value, SoftalkVoiceIDFirst)) {
+				if (!Helpers.InRange(value, SoftalkVoiceIDFirst)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkVoiceID = value;
@@ -213,7 +212,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの再生速度
 		public int SoftalkSpeed {
 			set {
-				if (!Helpers.IsRange(value, SoftalkSpeedFirst, SoftalkSpeedLast)) {
+				if (!Helpers.InRange(value, SoftalkSpeedFirst, SoftalkSpeedLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkSpeed = value;
@@ -228,7 +227,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの音量
 		public int SoftalkVolume {
 			set {
-				if (!Helpers.IsRange(value, SoftalkVolumeFirst, SoftalkVolumeLast)) {
+				if (!Helpers.InRange(value, SoftalkVolumeFirst, SoftalkVolumeLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkVolume = value;
@@ -243,7 +242,7 @@ namespace YukkuriUtil.Models {
 		// SofTalkの音程
 		public int SoftalkPitch {
 			set {
-				if (!Helpers.IsRange(value, SoftalkPitchFirst, SoftalkPitchLast)) {
+				if (!Helpers.InRange(value, SoftalkPitchFirst, SoftalkPitchLast)) {
 					throw new ArgumentOutOfRangeException();
 				}
 				_SoftalkPitch = value;
