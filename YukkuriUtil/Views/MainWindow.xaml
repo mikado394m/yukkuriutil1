@@ -58,8 +58,10 @@
 				<RowDefinition Height="5*"/>
 			</Grid.RowDefinitions>
 
-			<TextBlock Grid.Row="0" Text="字幕"/>
-			<TextBox Grid.Row="1" Text="{Binding ShowText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True">
+
+            <TextBlock Grid.Row="0" Text="字幕"/>
+
+            <v:IMETextBox Grid.Row="1" Text="{Binding ShowText}" AcceptsReturn="True">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="TextChanged">
 						<i:Interaction.Behaviors>
@@ -73,7 +75,7 @@
 						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="EnableCopyText"/>
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
-			</TextBox>
+			</v:IMETextBox>
 
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
@@ -84,13 +86,13 @@
 				<TextBlock Grid.Column="0" Text="発声記号"/>
 				<CheckBox Grid.Column="1" Content="字幕をコピー" HorizontalAlignment="Right" IsTabStop="False" IsChecked="{Binding ShouldTextCopy}"/>
 			</Grid>
-			<TextBox Grid.Row="3" Text="{Binding VoiceText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True">
+            <v:IMETextBox Grid.Row="3" Text="{Binding VoiceText}" AcceptsReturn="True">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="GotFocus">
 						<l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="DisableCopyText"/>
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
-			</TextBox>
+			</v:IMETextBox>
 		</Grid>
 
 		<Border Grid.Column="1" Grid.Row="0" Background="{Binding AreaColor}">
