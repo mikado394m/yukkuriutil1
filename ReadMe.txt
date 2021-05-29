@@ -1,4 +1,4 @@
-﻿YukkuriUtil Version0.0.10.10
+﻿YukkuriUtil Version0.0.11.11
 
 
 【使い方】
@@ -36,6 +36,9 @@ Microsoft Public License (Ms-PL)
 
 
 【変更履歴】
+0.0.11.11
+・https://github.com/mikado394m/yukkuriutil1/issues/6 の修正
+
 0.0.10.10
 ・依存関係の更新
 ・古くなっていた ReadMe の内容を更新
